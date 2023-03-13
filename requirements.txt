@@ -1,63 +1,12 @@
-Babel==2.6.0
-chardet==3.0.4
-decorator==4.3.0
-docutils==0.14
-ebaysdk==2.1.5
-feedparser==5.2.1
-freezegun==0.3.15; python_version >= '3.8'
-gevent==20.9.0 ; python_version >= '3.8'
-greenlet==0.4.17 ; python_version > '3.7'
-html2text==2018.1.9
-idna==2.6
-# bullseye version, focal patched 2.10
-Jinja2==2.11.2; python_version >= '3.8'
-libsass==0.17.0
-lxml==4.6.1 ; sys_platform != 'win32' and python_version > '3.7'
-lxml ; sys_platform == 'win32'
-Mako==1.0.7
-MarkupSafe==1.1.0
-num2words==0.5.6
-ofxparse==0.19
-passlib==1.7.2
-polib==1.1.0
-psutil==5.6.6
-psycopg2==2.8.5; sys_platform == 'win32' or python_version >= '3.8'
-pydot==1.4.1
-python-ldap==3.1.0; sys_platform != 'win32'
-PyPDF2==1.26.0
-pyserial==3.4
-python-dateutil==2.7.3
-pytz==2019.1
-pyusb==1.0.2
-qrcode==6.1
-reportlab==3.5.55; python_version >= '3.8'
-requests==2.21.0
-zeep==3.2.0
-python-stdnum==1.8
-vobject==0.9.6.1
-Werkzeug==0.16.1
-XlsxWriter==1.1.2
-xlwt==1.3.*
-xlrd==1.2.0; python_version >= '3.8'
-pypiwin32 ; sys_platform == 'win32'
-
-urllib3~=1.24.3
-setuptools~=52.0.0
-PyMySQL==1.0.2
-DBUtils==2.0.1
-pysftp==0.2.8
-cryptography==3.3.2
-paramiko==2.4.2
-cx-Oracle==8.1.0
-pillow~=8.1.1
-suds==1.0.0
-
-redis==2.10.6
-
-
-
-
-pika~=1.2.0
-pyparsing~=2.4.7
-openpyxl~=3.0.7
-xmltodict==0.13.0
+[Unit]
+Description=xinchuang-materiel
+Requires=postgresql-10.service
+After=network.target postgresql.service
+[Service]
+Type=simple
+SyslogIdentifier=xinchuang-materiel
+PermissionsStartOnly=true
+ExecStart=/home/xc-odoo/xc-dev/env/bin/python3  /home/xc-odoo/xc-dev/odoo-bin -c /home/xc-odoo/xc-dev/odoo.conf  --load=web,muk_session_store
+StandardOutput=journal+console
+[Install]
+WantedBy=multi-user.target
